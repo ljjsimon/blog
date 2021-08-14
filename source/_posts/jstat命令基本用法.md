@@ -57,6 +57,7 @@ E:\dir1\aaa>jstat  -options
 
 # 具体使用
 ## 加载统计：
+```
 jstat -class 7
 Loaded Bytes Unloaded Bytes Time
 19138 34432.8 36 34.1 13.90
@@ -66,8 +67,10 @@ Bytes：所占用空间大小
 Unloaded：卸载的class数量
 Bytes:卸载释放的空间
 Time：加载和卸载耗费的时间
+```
 
 ## JIT编译统计
+```
 E:>jstat -compiler 16596
 Compiled Failed Invalid Time FailedType FailedMethod
 8455 3 0 35.63 1 java/util/concurrent/ConcurrentHashMap transfer
@@ -78,8 +81,10 @@ Invalid：不可用数量
 Time：时间
 FailedType：失败类型
 FailedMethod：失败的方法
+```
 
 ## 堆信息统计
+```
 E:>jstat -gc 16596
 S0C S1C S0U S1U EC EU OC OU MC MU CCSC CCSU YGC YGCT FGC FGCT GCT
 2560.0 24064.0 2080.0 0.0 407040.0 296932.8 225792.0 28917.2 60568.0 57891.2 8096.0 7581.1 18 0.535 3 0.293 0.828
@@ -101,8 +106,10 @@ YGCT：年轻代垃圾回收消耗时间
 FGC：老年代垃圾回收次数
 FGCT：老年代垃圾回收消耗时间
 GCT：垃圾回收消耗总时间
+```
 
 ## 堆信息统计2
+```
 与-gc基本相同，主要关注堆各个区域使用到的最大最小空间
 jstat -gccapacity 7
 NGCMN NGCMX NGC S0C S1C EC OGCMN OGCMX OGC OC MCMN MCMX MC CCSMN CCSMX CCSC YGC FGC
@@ -126,8 +133,10 @@ CCSMX：最大压缩类空间大小
 CCSC：当前压缩类空间大小
 YGC：年轻代gc次数
 FGC：老年代GC次数
+```
 
 ## 新生代垃圾回收统计
+```
 E:>jstat -gcnew 16596
 S0C S1C S0U S1U TT MTT DSS EC EU YGC YGCT
 2560.0 24064.0 2080.0 0.0 6 15 24064.0 407040.0 301968.7 18 0.535
@@ -143,8 +152,10 @@ EC：伊甸园区的大小
 EU：伊甸园区的使用大小
 YGC：年轻代垃圾回收次数
 YGCT：年轻代垃圾回收消耗时间
+```
 
 ## 新生代内存统计
+```
 E:>jstat -gcnewcapacity 16596
 NGCMN NGCMX NGC S0CMX S0C S1CMX S1C ECMX EC YGC FGC
 86528.0 1384448.0 527872.0 461312.0 2560.0 461312.0 24064.0 1383424.0 407040.0 18 3
@@ -160,8 +171,10 @@ ECMX：最大伊甸园区大小
 EC：当前伊甸园区大小
 YGC：年轻代垃圾回收次数
 FGC：Full GC次数
+```
 
 ## 老年代垃圾回收统计
+```
 E:>jstat -gcold 16596
 MC MU CCSC CCSU OC OU YGC FGC FGCT GCT
 60568.0 57891.2 8096.0 7581.1 225792.0 28917.2 18 3 0.293 0.828
@@ -176,8 +189,10 @@ YGC：年轻代垃圾回收次数
 FGC：老年代垃圾回收次数
 FGCT：老年代垃圾回收消耗时间
 GCT：垃圾回收消耗总时间
+```
 
 ## 老年代内存统计
+```
 E:>jstat -gcoldcapacity 16596
 OGCMN OGCMX OGC OC YGC FGC FGCT GCT
 173568.0 2768896.0 225792.0 225792.0 18 3 0.293 0.828
@@ -190,8 +205,10 @@ YGC：年轻代垃圾回收次数
 FGC：老年代垃圾回收次数
 FGCT：老年代垃圾回收消耗时间
 GCT：垃圾回收消耗总时间
+```
 
 ## 元数据空间统计
+```
 D:\dir1>jstat -gcmetacapacity 16596
 MCMN MCMX MC CCSMN CCSMX CCSC YGC FGC FGCT GCT
 0.0 1101824.0 60568.0 0.0 1048576.0 8096.0 18 3 0.293 0.828
@@ -206,8 +223,10 @@ YGC：年轻代垃圾回收次数
 FGC：老年代垃圾回收次数
 FGCT：老年代垃圾回收消耗时间
 GCT：垃圾回收消耗总时间
+```
 
 ## 总结垃圾回收统计
+```
 与-gc基本相同，主要关注已使用空间站总空间比例
 D:\dir1>jstat -gcutil 16596
 S0 S1 E O M CCS YGC YGCT FGC FGCT GCT
@@ -224,8 +243,10 @@ YGCT：年轻代垃圾回收总耗时， 0.535秒， 也就是平均每次耗时
 FGC：老年代垃圾回收次数 3次
 FGCT：老年代垃圾回收消耗时间 0.293秒
 GCT：垃圾回收消耗总时间
+```
 
 ## JIT编译方法统计
+```
 D:\dir1>jstat -printcompilation 16596
 Compiled Size Type Method
 8444 75 1 com/sun/jersey/core/util/StringIgnoreCaseKeyComparator hash
@@ -234,7 +255,7 @@ Compiled：最近编译方法的数量
 Size：最近编译方法的字节码数量
 Type：最近编译方法的编译类型。
 Method：方法名标识。
-
+```
 
 ----------------
 原文链接：https://blog.csdn.net/russle/article/details/99702149
