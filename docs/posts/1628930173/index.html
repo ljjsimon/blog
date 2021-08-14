@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        jstat命令基本用法 - ljj的博客
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="ljj的博客" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/avatar.jpeg" />
+        </div>
+        <div class="name">
+            <i>ljj</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E4%BD%BF%E7%94%A8"><span class="toc-text">具体使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E7%BB%9F%E8%AE%A1%EF%BC%9A"><span class="toc-text">加载统计：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JIT%E7%BC%96%E8%AF%91%E7%BB%9F%E8%AE%A1"><span class="toc-text">JIT编译统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%E4%BF%A1%E6%81%AF%E7%BB%9F%E8%AE%A1"><span class="toc-text">堆信息统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%E4%BF%A1%E6%81%AF%E7%BB%9F%E8%AE%A12"><span class="toc-text">堆信息统计2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E7%94%9F%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%BB%9F%E8%AE%A1"><span class="toc-text">新生代垃圾回收统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E7%94%9F%E4%BB%A3%E5%86%85%E5%AD%98%E7%BB%9F%E8%AE%A1"><span class="toc-text">新生代内存统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%80%81%E5%B9%B4%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%BB%9F%E8%AE%A1"><span class="toc-text">老年代垃圾回收统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%80%81%E5%B9%B4%E4%BB%A3%E5%86%85%E5%AD%98%E7%BB%9F%E8%AE%A1"><span class="toc-text">老年代内存统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E6%95%B0%E6%8D%AE%E7%A9%BA%E9%97%B4%E7%BB%9F%E8%AE%A1"><span class="toc-text">元数据空间统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%BB%9F%E8%AE%A1"><span class="toc-text">总结垃圾回收统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JIT%E7%BC%96%E8%AF%91%E6%96%B9%E6%B3%95%E7%BB%9F%E8%AE%A1"><span class="toc-text">JIT编译方法统计</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        jstat命令基本用法
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2021-08-14 16:34:37</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#java" title="java">java</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <p>诊断程序性能问题，或者OOM问题需要查看程序运行的一些统计信息，jstat为我们提供了很多虚拟机运行时的状态信息，它可以显示本地或者远程虚拟机进程中的类加载、内存、垃圾收集、JIT编译等信息。</p>
+<h1 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h1><p>我的jdk是1.8.0_191</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">D:。。。。\dir1&gt;jstat -help</span><br><span class="line">Usage: jstat -help|-options</span><br><span class="line">       jstat -&lt;option&gt; [-t] [-h&lt;lines&gt;] &lt;vmid&gt; [&lt;interval&gt; [&lt;count&gt;]]</span><br><span class="line"></span><br><span class="line">Definitions:</span><br><span class="line">  &lt;option&gt;      An option reported by the -options option</span><br><span class="line">  &lt;vmid&gt;        Virtual Machine Identifier. A vmid takes the following form:</span><br><span class="line">                     &lt;lvmid&gt;[@&lt;hostname&gt;[:&lt;port&gt;]]</span><br><span class="line">                Where &lt;lvmid&gt; is the local vm identifier for the target</span><br><span class="line">                Java virtual machine, typically a process id; &lt;hostname&gt; is</span><br><span class="line">                the name of the host running the target Java virtual machine;</span><br><span class="line">                and &lt;port&gt; is the port number for the rmiregistry on the</span><br><span class="line">                target host. See the jvmstat documentation for a more complete</span><br><span class="line">                description of the Virtual Machine Identifier.</span><br><span class="line">  &lt;lines&gt;       Number of samples between header lines.</span><br><span class="line">  &lt;interval&gt;    Sampling interval. The following forms are allowed:</span><br><span class="line">                    &lt;n&gt;[&quot;ms&quot;|&quot;s&quot;]</span><br><span class="line">                Where &lt;n&gt; is an integer and the suffix specifies the units as</span><br><span class="line">                milliseconds(&quot;ms&quot;) or seconds(&quot;s&quot;). The default units are &quot;ms&quot;.</span><br><span class="line">  &lt;count&gt;       Number of samples to take before terminating.</span><br><span class="line">  -J&lt;flag&gt;      Pass &lt;flag&gt; directly to the runtime system.</span><br></pre></td></tr></table></figure>
+
+<p>也就是
+jstat 选项 进程id 间隔时间 采集次数</p>
+<p>其中，选项有多个，例如， -gc， gcnew等等。 间隔时间和次数不是必须的。如果没有间隔时间和次数表示只采集一次。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">E:\dir1\aaa&gt;jstat  -options</span><br><span class="line">-class</span><br><span class="line">-compiler</span><br><span class="line">-gc</span><br><span class="line">-gccapacity</span><br><span class="line">-gccause</span><br><span class="line">-gcmetacapacity</span><br><span class="line">-gcnew</span><br><span class="line">-gcnewcapacity</span><br><span class="line">-gcold</span><br><span class="line">-gcoldcapacity</span><br><span class="line">-gcutil</span><br><span class="line">-printcompilation</span><br></pre></td></tr></table></figure>
+
+<h1 id="具体使用"><a href="#具体使用" class="headerlink" title="具体使用"></a>具体使用</h1><h2 id="加载统计："><a href="#加载统计：" class="headerlink" title="加载统计："></a>加载统计：</h2><p>jstat -class 7
+Loaded Bytes Unloaded Bytes Time
+19138 34432.8 36 34.1 13.90</p>
+<p>Loaded:加载class的数量
+Bytes：所占用空间大小
+Unloaded：卸载的class数量
+Bytes:卸载释放的空间
+Time：加载和卸载耗费的时间</p>
+<h2 id="JIT编译统计"><a href="#JIT编译统计" class="headerlink" title="JIT编译统计"></a>JIT编译统计</h2><p>E:&gt;jstat -compiler 16596
+Compiled Failed Invalid Time FailedType FailedMethod
+8455 3 0 35.63 1 java/util/concurrent/ConcurrentHashMap transfer</p>
+<p>Compiled：编译数量。
+Failed：失败数量
+Invalid：不可用数量
+Time：时间
+FailedType：失败类型
+FailedMethod：失败的方法</p>
+<h2 id="堆信息统计"><a href="#堆信息统计" class="headerlink" title="堆信息统计"></a>堆信息统计</h2><p>E:&gt;jstat -gc 16596
+S0C S1C S0U S1U EC EU OC OU MC MU CCSC CCSU YGC YGCT FGC FGCT GCT
+2560.0 24064.0 2080.0 0.0 407040.0 296932.8 225792.0 28917.2 60568.0 57891.2 8096.0 7581.1 18 0.535 3 0.293 0.828</p>
+<p>S0C：第一个幸存区的大小
+S1C：第二个幸存区的大小
+S0U：第一个幸存区的使用大小
+S1U：第二个幸存区的使用大小
+EC：伊甸园区的大小
+EU：伊甸园区的使用大小
+OC：老年代大小
+OU：老年代使用大小
+MC：方法区大小
+MU：方法区使用大小
+CCSC:压缩类空间大小
+CCSU:压缩类空间使用大小
+YGC：年轻代垃圾回收次数
+YGCT：年轻代垃圾回收消耗时间
+FGC：老年代垃圾回收次数
+FGCT：老年代垃圾回收消耗时间
+GCT：垃圾回收消耗总时间</p>
+<h2 id="堆信息统计2"><a href="#堆信息统计2" class="headerlink" title="堆信息统计2"></a>堆信息统计2</h2><p>与-gc基本相同，主要关注堆各个区域使用到的最大最小空间
+jstat -gccapacity 7
+NGCMN NGCMX NGC S0C S1C EC OGCMN OGCMX OGC OC MCMN MCMX MC CCSMN CCSMX CCSC YGC FGC
+174592.0 349184.0 313856.0 44544.0 26112.0 224768.0 349696.0 699392.0 499200.0 499200.0 0.0 1140736.0 105496.0 0.0 1048576.0 13616.0 57 4</p>
+<p>NGCMN：新生代最小容量
+NGCMX：新生代最大容量
+NGC：当前新生代容量
+S0C：第一个幸存区大小
+S1C：第二个幸存区的大小
+EC：伊甸园区的大小
+OGCMN：老年代最小容量
+OGCMX：老年代最大容量
+OGC：当前老年代大小
+OC:当前老年代大小
+MCMN:最小元数据容量
+MCMX：最大元数据容量
+MC：当前元数据空间大小
+CCSMN：最小压缩类空间大小
+CCSMX：最大压缩类空间大小
+CCSC：当前压缩类空间大小
+YGC：年轻代gc次数
+FGC：老年代GC次数</p>
+<h2 id="新生代垃圾回收统计"><a href="#新生代垃圾回收统计" class="headerlink" title="新生代垃圾回收统计"></a>新生代垃圾回收统计</h2><p>E:&gt;jstat -gcnew 16596
+S0C S1C S0U S1U TT MTT DSS EC EU YGC YGCT
+2560.0 24064.0 2080.0 0.0 6 15 24064.0 407040.0 301968.7 18 0.535</p>
+<p>S0C：第一个幸存区大小
+S1C：第二个幸存区的大小
+S0U：第一个幸存区的使用大小
+S1U：第二个幸存区的使用大小
+TT:对象在新生代存活的次数
+MTT:对象在新生代存活的最大次数
+DSS:期望的幸存区大小
+EC：伊甸园区的大小
+EU：伊甸园区的使用大小
+YGC：年轻代垃圾回收次数
+YGCT：年轻代垃圾回收消耗时间</p>
+<h2 id="新生代内存统计"><a href="#新生代内存统计" class="headerlink" title="新生代内存统计"></a>新生代内存统计</h2><p>E:&gt;jstat -gcnewcapacity 16596
+NGCMN NGCMX NGC S0CMX S0C S1CMX S1C ECMX EC YGC FGC
+86528.0 1384448.0 527872.0 461312.0 2560.0 461312.0 24064.0 1383424.0 407040.0 18 3</p>
+<p>NGCMN：新生代最小容量
+NGCMX：新生代最大容量
+NGC：当前新生代容量
+S0CMX：最大幸存1区大小
+S0C：当前幸存1区大小
+S1CMX：最大幸存2区大小
+S1C：当前幸存2区大小
+ECMX：最大伊甸园区大小
+EC：当前伊甸园区大小
+YGC：年轻代垃圾回收次数
+FGC：Full GC次数</p>
+<h2 id="老年代垃圾回收统计"><a href="#老年代垃圾回收统计" class="headerlink" title="老年代垃圾回收统计"></a>老年代垃圾回收统计</h2><p>E:&gt;jstat -gcold 16596
+MC MU CCSC CCSU OC OU YGC FGC FGCT GCT
+60568.0 57891.2 8096.0 7581.1 225792.0 28917.2 18 3 0.293 0.828</p>
+<p>MC：方法区大小
+MU：方法区使用大小
+CCSC:压缩类空间大小
+CCSU:压缩类空间使用大小
+OC：老年代大小
+OU：老年代使用大小
+YGC：年轻代垃圾回收次数
+FGC：老年代垃圾回收次数
+FGCT：老年代垃圾回收消耗时间
+GCT：垃圾回收消耗总时间</p>
+<h2 id="老年代内存统计"><a href="#老年代内存统计" class="headerlink" title="老年代内存统计"></a>老年代内存统计</h2><p>E:&gt;jstat -gcoldcapacity 16596
+OGCMN OGCMX OGC OC YGC FGC FGCT GCT
+173568.0 2768896.0 225792.0 225792.0 18 3 0.293 0.828</p>
+<p>OGCMN：老年代最小容量
+OGCMX：老年代最大容量
+OGC：当前老年代大小
+OC：老年代大小
+YGC：年轻代垃圾回收次数
+FGC：老年代垃圾回收次数
+FGCT：老年代垃圾回收消耗时间
+GCT：垃圾回收消耗总时间</p>
+<h2 id="元数据空间统计"><a href="#元数据空间统计" class="headerlink" title="元数据空间统计"></a>元数据空间统计</h2><p>D:\dir1&gt;jstat -gcmetacapacity 16596
+MCMN MCMX MC CCSMN CCSMX CCSC YGC FGC FGCT GCT
+0.0 1101824.0 60568.0 0.0 1048576.0 8096.0 18 3 0.293 0.828</p>
+<p>MCMN:最小元数据容量
+MCMX：最大元数据容量
+MC：当前元数据空间大小
+CCSMN：最小压缩类空间大小
+CCSMX：最大压缩类空间大小
+CCSC：当前压缩类空间大小
+YGC：年轻代垃圾回收次数
+FGC：老年代垃圾回收次数
+FGCT：老年代垃圾回收消耗时间
+GCT：垃圾回收消耗总时间</p>
+<h2 id="总结垃圾回收统计"><a href="#总结垃圾回收统计" class="headerlink" title="总结垃圾回收统计"></a>总结垃圾回收统计</h2><p>与-gc基本相同，主要关注已使用空间站总空间比例
+D:\dir1&gt;jstat -gcutil 16596
+S0 S1 E O M CCS YGC YGCT FGC FGCT GCT
+81.25 0.00 70.12 12.81 95.58 93.64 18 0.535 3 0.293 0.828</p>
+<p>S0：Survivor0区当前使用比例
+S1：Survivor1区当前使用比例
+E：伊甸园区使用比例
+O：老年代使用比例
+M：元数据区使用比例
+CCS：压缩使用比例
+YGC：年轻代垃圾回收次数， 18次
+YGCT：年轻代垃圾回收总耗时， 0.535秒， 也就是平均每次耗时 0.535/18=0.0297秒
+FGC：老年代垃圾回收次数 3次
+FGCT：老年代垃圾回收消耗时间 0.293秒
+GCT：垃圾回收消耗总时间</p>
+<h2 id="JIT编译方法统计"><a href="#JIT编译方法统计" class="headerlink" title="JIT编译方法统计"></a>JIT编译方法统计</h2><p>D:\dir1&gt;jstat -printcompilation 16596
+Compiled Size Type Method
+8444 75 1 com/sun/jersey/core/util/StringIgnoreCaseKeyComparator hash</p>
+<p>Compiled：最近编译方法的数量
+Size：最近编译方法的字节码数量
+Type：最近编译方法的编译类型。
+Method：方法名标识。</p>
+<hr>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/russle/article/details/99702149">https://blog.csdn.net/russle/article/details/99702149</a></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/simonlin">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/7453415873">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/questionlin">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="http://b.ljj.pub/atom.xml">feed/atom/rss</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://kalasearch.cn">卡拉搜索</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

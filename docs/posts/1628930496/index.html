@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        一次简单的jvm内存使用排查 - ljj的博客
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="ljj的博客" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/avatar.jpeg" />
+        </div>
+        <div class="name">
+            <i>ljj</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B5%B7%E5%9B%A0"><span class="toc-text">起因</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%8F%E8%BF%87"><span class="toc-text">经过</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A6%96"><span class="toc-text">首</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%84%B6"><span class="toc-text">然</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%84%B6-1"><span class="toc-text">然</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C"><span class="toc-text">结果</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        一次简单的jvm内存使用排查
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2021-08-14 16:41:09</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#java" title="java">java</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>本地服务起来之后没有请求，但是通过</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jconsole</span><br></pre></td></tr></table></figure>
+<p>查看 Eden 区，内存一直稳步升高，达到阈值后被 ygc 回收，不会触发 fgc。但是不正常要弄清楚原因，于是开始排查。</p>
+<h1 id="经过"><a href="#经过" class="headerlink" title="经过"></a>经过</h1><h2 id="首"><a href="#首" class="headerlink" title="首"></a>首</h2><p>先想到的是 jconsole 对服务的请求导致，于是关闭 jconsole，使用</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ jps <span class="comment"># 查看 pid</span></span><br><span class="line">97424 </span><br><span class="line">45479 JConsole</span><br><span class="line">45833 AppServiceApplication</span><br><span class="line">45290 GradleDaemon</span><br><span class="line">47467 Jps</span><br><span class="line">45787 GradleDaemon</span><br><span class="line">41086 GradleDaemon</span><br><span class="line"></span><br><span class="line">$ jstat -gc pid</span><br><span class="line"> S0C    S1C    S0U    S1U      EC       EU        OC         OU       MC     MU    CCSC   CCSU   YGC     YGCT    FGC    FGCT     GCT   </span><br><span class="line">36864.0 37376.0  0.0    0.0   624128.0 125440.3  194560.0   56782.3   113612.0 108595.5 14848.0 14025.1     28    0.539   6      1.551    2.090</span><br></pre></td></tr></table></figure>
+<p>再过一段时间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ jstat -gc pid</span><br><span class="line"> S0C    S1C    S0U    S1U      EC       EU        OC         OU       MC     MU    CCSC   CCSU   YGC     YGCT    FGC    FGCT     GCT   </span><br><span class="line">36864.0 37376.0  0.0    0.0   624128.0 169705.6  194560.0   56782.3   113612.0 108595.5 14848.0 14025.1     28    0.539   6      1.551    2.090</span><br></pre></td></tr></table></figure>
+<p>发现内存增长较大，排除 jconsole jstat 等工具调用</p>
+<p>然后关闭 zk, mq 依赖，发现还是有，排除 zk, mq 心跳</p>
+<h2 id="然"><a href="#然" class="headerlink" title="然"></a>然</h2><p>后使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jmap -dump:format&#x3D;b,file&#x3D;aaa.hprof pid</span><br></pre></td></tr></table></figure>
+<p>导出内存，再在 mat 里分析，发现内存泄露非常少，而且没有增加。即增加在 Eden 的内存不属于泄露。</p>
+<h2 id="然-1"><a href="#然-1" class="headerlink" title="然"></a>然</h2><p>后使用</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jmap -histo pid &gt; all.txt <span class="comment"># 导出堆区所有内存对象</span></span><br><span class="line">jmap -histo:live pid &gt; gc.txt <span class="comment"># 先执行 gc，然后导出堆区所有内存对象</span></span><br></pre></td></tr></table></figure>
+<p>发现 all.txt 是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> num     #instances         #bytes  class name</span><br><span class="line">----------------------------------------------</span><br><span class="line">   1:        830787       66800632  [C</span><br><span class="line">   2:         97630       26007600  [I</span><br><span class="line">   3:        116249       15713024  [B</span><br><span class="line">   4:        540884       12981216  java.lang.String</span><br><span class="line">   5:        253263       12591912  [Ljava.lang.Object;</span><br></pre></td></tr></table></figure>
+<p>gc.txt 是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> num     #instances         #bytes  class name</span><br><span class="line">----------------------------------------------</span><br><span class="line">   1:        131103       17091664  [C</span><br><span class="line">   2:        129867        3116808  java.lang.String</span><br><span class="line">   3:         32805        2886840  java.lang.reflect.Method</span><br><span class="line">   4:         84468        2702976  java.util.concurrent.ConcurrentHashMap$Node</span><br><span class="line">   5:         22404        2476608  java.lang.Class</span><br><span class="line">   6:         10266        2240408  [B</span><br><span class="line">   7:         25721        1992728  [Ljava.lang.Object;</span><br></pre></td></tr></table></figure>
+<p>其中 java.lang.String 减少非常多，立即想到不是输入，是不是输出。查看本地服务输出，果然一直有内容在输出。对那个依赖修改，不再输出后，查看 jconsole，果然内存不再增长了。</p>
+<h1 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h1><p>通过这次排查，找到了本地服务内存占用一直升高的原因，并且做了修复，由于线上没有出现同样的问题，不需要修复。同时了解到，日志输出产生的 String 只能等到 gc 的时候被清理。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/simonlin">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/7453415873">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/questionlin">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="http://b.ljj.pub/atom.xml">feed/atom/rss</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://kalasearch.cn">卡拉搜索</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
