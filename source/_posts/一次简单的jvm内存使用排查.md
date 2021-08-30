@@ -77,3 +77,25 @@ gc.txt 是
 
 # 结果
 通过这次排查，找到了本地服务内存占用一直升高的原因，并且做了修复，由于线上没有出现同样的问题，不需要修复。同时了解到，日志输出产生的 String 只能等到 gc 的时候被清理。
+
+# 附录
+## 打印gc日志
+-XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps
+
+## 频繁GC问题或内存溢出问题
+一、使用jps查看线程ID
+
+二、使用jstat -gc 3331 250 20 查看gc情况，一般比较关注PERM区的情况，查看GC的增长情况。
+
+三、使用jstat -gccause：额外输出上次GC原因
+
+四、使用jmap -dump:format=b,file=heapDump 3331生成堆转储文件
+
+五、使用jhat或者可视化工具（Eclipse Memory Analyzer 、IBM HeapAnalyzer）分析堆情况。
+
+六、结合代码解决内存溢出或泄露问题。
+
+## 死锁问题
+一、使用jps查看线程ID
+
+二、使用jstack 3331：查看线程情况
