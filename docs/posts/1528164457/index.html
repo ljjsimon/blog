@@ -143,11 +143,10 @@
     </div>
     <div class="post-content no-indent">
         <p>阻止跳转的代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">window</span>).on(<span class="string">'beforeunload'</span>, () =&gt; &#123; <span class="built_in">console</span>.log(<span class="string">'leave'</span>); <span class="keyword">return</span> <span class="literal">false</span>; &#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">window</span>).on(<span class="string">&#x27;beforeunload&#x27;</span>, <span class="function">() =&gt;</span> &#123; <span class="built_in">console</span>.log(<span class="string">&#x27;leave&#x27;</span>); <span class="keyword">return</span> <span class="literal">false</span>; &#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&#x27;beforeunload&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">&#x27;leave&#x27;</span>);<span class="keyword">return</span> <span class="literal">false</span>;&#125;);</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'beforeunload'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">'leave'</span>);<span class="keyword">return</span> <span class="literal">false</span>;&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>参考来源：<a href="https://jingyan.baidu.com/article/574c52190bc5ac6c8d9dc196.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/574c52190bc5ac6c8d9dc196.html</a></p>
+<p>参考来源：<a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/574c52190bc5ac6c8d9dc196.html">https://jingyan.baidu.com/article/574c52190bc5ac6c8d9dc196.html</a></p>
 
         
         <br />

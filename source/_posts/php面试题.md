@@ -38,6 +38,9 @@ https://cloud.tencent.com/developer/article/1162322
 - protect 外部不能调用，子类可调用
 - private 外部不能调用，子类不能调用
 
+## self:: static::
+self::调用父类，static::调用当前类（子类）
+
 # 数据库
 ## redis 跳表的数据结构
 简单的来说就是自带了一个跳跃的索引，比如数据是123456789，那么跳表的一级索引可以是148，二级索引是14

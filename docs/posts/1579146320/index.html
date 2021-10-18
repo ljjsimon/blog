@@ -142,14 +142,13 @@
 </span>
     </div>
     <div class="post-content no-indent">
-        <h1 id="http-client"><a href="#http-client" class="headerlink" title="http/client"></a>http/client</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Swoole\Coroutine\Http\Client($url, $port, $ssl);</span><br></pre></td></tr></table></figure>
-
+        <h1 id="http-client"><a href="#http-client" class="headerlink" title="http/client"></a>http/client</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Swoole\Coroutine\Http\Client(<span class="variable">$url</span>, <span class="variable">$port</span>, <span class="variable">$ssl</span>);</span><br></pre></td></tr></table></figure>
 <p>$url 参数不带协议（http/https），如果请求 https，$port=443，$ssl=true</p>
 <h1 id="http-request"><a href="#http-request" class="headerlink" title="http/request"></a>http/request</h1><p>通过 $request-&gt;server[‘request_method] 判断请求是 get 还是 post 还是别的</p>
-<h1 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$response-&gt;header(<span class="string">'Access-Control-Allow-Origin'</span>,<span class="string">'*'</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$response</span>-&gt;header(<span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>,<span class="string">&#x27;*&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 <h1 id="协程锁"><a href="#协程锁" class="headerlink" title="协程锁"></a>协程锁</h1><p>swoole 每次只有一个协程在运行，所以不用加锁
-参考：<br><a href="https://wiki.swoole.com/wiki/page/p-differences_with_go.html" target="_blank" rel="noopener">https://wiki.swoole.com/wiki/page/p-differences_with_go.html</a></p>
+参考：<br><a target="_blank" rel="noopener" href="https://wiki.swoole.com/wiki/page/p-differences_with_go.html">https://wiki.swoole.com/wiki/page/p-differences_with_go.html</a></p>
 <h1 id="打印-swoole-配置"><a href="#打印-swoole-配置" class="headerlink" title="打印 swoole 配置"></a>打印 swoole 配置</h1><p>php –ri swoole</p>
 
         

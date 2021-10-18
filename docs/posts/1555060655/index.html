@@ -146,7 +146,6 @@
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cp conf/zoo_example.cfg conf/zoo.cfg <span class="comment">#里面的 tickTime=2000 表示2秒检查一次，分布式锁可以以此作为过期时间</span></span><br><span class="line">$ bin/zkServer.sh start</span><br><span class="line">$ bin/zkCli.sh -server 127.0.0.1:2181</span><br><span class="line"></span><br><span class="line"><span class="built_in">help</span> <span class="comment">#查看帮助</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="命名服务"><a href="#命名服务" class="headerlink" title="命名服务"></a>命名服务</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create /foo bar <span class="comment">#创建数据</span></span><br><span class="line"><span class="built_in">set</span> /foo b <span class="comment">#修改数据</span></span><br><span class="line">create -s /foo bar <span class="comment">#得到 /foo0000000001</span></span><br><span class="line">create -s /foo bar <span class="comment">#得到 /foo0000000002</span></span><br></pre></td></tr></table></figure>
-
 <p>可以看到 create -s /foo 的时候实际创建的是 /foo0000000001。foo后面跟的数字是有序的，可以作为集群获得唯一有序名称的来源。</p>
 <h1 id="注册中心"><a href="#注册中心" class="headerlink" title="注册中心"></a>注册中心</h1><p>注册中心的需求是当集群里面有新节点进入或老节点退出的时候，其他节点能得到通知并更新数据。可以使用 zookeeper 的临时数据和观察特定来做到。</p>
 <p>create -e 命令创建一个临时数据，当创建者断开连接的时候，数据被清除。利用的是心跳机制。
@@ -185,13 +184,13 @@ ls -w 观察一个节点</p>
 <ol>
 <li>为什么 Apollo 没有使用 zookeeper?</li>
 </ol>
-<p><a href="https://github.com/ctripcorp/apollo" target="_blank" rel="noopener">Apollo</a>使用的是 Eureka。因为 zookeeper 获得通知后要再次订阅，才能再次获得通知。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ctripcorp/apollo">Apollo</a>使用的是 Eureka。因为 zookeeper 获得通知后要再次订阅，才能再次获得通知。</p>
 <ol start="2">
 <li>如果发生脑裂怎么办</li>
 </ol>
 <p>脑裂指的是系统彻底分成两个部分，两个部分根据选举都选出了主节点。zookeeper规定服务器必须过半，即数量不到一半的那个网络，会停止服务。</p>
 <hr>
-<p>参考：<br><a href="https://juejin.im/post/5cdbda12e51d453ccd24650f" target="_blank" rel="noopener">https://juejin.im/post/5cdbda12e51d453ccd24650f</a><br><a href="https://blog.csdn.net/u013256816/article/details/80865540" target="_blank" rel="noopener">https://blog.csdn.net/u013256816/article/details/80865540</a></p>
+<p>参考：<br><a target="_blank" rel="noopener" href="https://juejin.im/post/5cdbda12e51d453ccd24650f">https://juejin.im/post/5cdbda12e51d453ccd24650f</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013256816/article/details/80865540">https://blog.csdn.net/u013256816/article/details/80865540</a></p>
 
         
         <br />

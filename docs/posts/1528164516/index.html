@@ -150,53 +150,47 @@
 <ol>
 <li><p>配置 Master 主服务器</p>
 <ol>
-<li><p>在 Master MySQL 上创建用户’repl’，并允许其他 Slave 服务可以通过远程访问 Master，通过该用户读取二进制日志，实现数据同步。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 mysql&gt;create user repl; //创建新用户</span><br><span class="line">2 //repl用户必须具有REPLICATION SLAVE权限，除此之外没有必要添加不必要的权限，密码为mysql。说明一下192.168.0.%，这个配置是指明repl用户所在服务器，这里%是通配符，表示192.168.0.0-192.168.0.255的Server都可以以repl用户登陆主服务器。当然你也可以指定固定Ip。</span><br><span class="line">3 mysql&gt; GRANT REPLICATION SLAVE ON *.* TO &apos;repl&apos;@&apos;192.168.0.%&apos; IDENTIFIED BY &apos;mysql&apos;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>找到MySQL安装文件夹修改my.Ini文件。mysql中有好几种日志方式，这不是今天的重点。我们只要启动二进制日志log-bin就ok。
-在[mysqld]下面增加下面几行代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 server-id=1   //给数据库服务的唯一标识，一般为大家设置服务器Ip的末尾号</span><br><span class="line">2 log-bin=master-bin</span><br><span class="line">3 log-bin-index=master-bin.index</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看日志</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW MASTER STATUS;</span><br><span class="line">+-------------------+----------+--------------+------------------+</span><br><span class="line">| File | Position | Binlog_Do_DB | Binlog_Ignore_DB |</span><br><span class="line">+-------------------+----------+--------------+------------------+</span><br><span class="line">| master-bin.000001 | 1285 | | |</span><br><span class="line">+-------------------+----------+--------------+------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<li>在 Master MySQL 上创建用户’repl’，并允许其他 Slave 服务可以通过远程访问 Master，通过该用户读取二进制日志，实现数据同步。</li>
+</ol>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 mysql&gt;create user repl; &#x2F;&#x2F;创建新用户</span><br><span class="line">2 &#x2F;&#x2F;repl用户必须具有REPLICATION SLAVE权限，除此之外没有必要添加不必要的权限，密码为mysql。说明一下192.168.0.%，这个配置是指明repl用户所在服务器，这里%是通配符，表示192.168.0.0-192.168.0.255的Server都可以以repl用户登陆主服务器。当然你也可以指定固定Ip。</span><br><span class="line">3 mysql&gt; GRANT REPLICATION SLAVE ON *.* TO &#39;repl&#39;@&#39;192.168.0.%&#39; IDENTIFIED BY &#39;mysql&#39;;</span><br></pre></td></tr></table></figure>
 
-<p>重启 MySQL 服务</p>
-</li>
+<ol start="2">
+<li>找到MySQL安装文件夹修改my.Ini文件。mysql中有好几种日志方式，这不是今天的重点。我们只要启动二进制日志log-bin就ok。
+在[mysqld]下面增加下面几行代码</li>
+</ol>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 server-id&#x3D;1   &#x2F;&#x2F;给数据库服务的唯一标识，一般为大家设置服务器Ip的末尾号</span><br><span class="line">2 log-bin&#x3D;master-bin</span><br><span class="line">3 log-bin-index&#x3D;master-bin.index</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>查看日志<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW MASTER STATUS;</span><br><span class="line">+-------------------+----------+--------------+------------------+</span><br><span class="line">| File | Position | Binlog_Do_DB | Binlog_Ignore_DB |</span><br><span class="line">+-------------------+----------+--------------+------------------+</span><br><span class="line">| master-bin.000001 | 1285 | | |</span><br><span class="line">+-------------------+----------+--------------+------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+重启 MySQL 服务</li>
 </ol>
 </li>
 <li><p>配置 Slave 从服务器 (windows)</p>
 <ol>
 <li><p>找到MySQL安装文件夹修改my.ini文件，在[mysqld]下面增加下面几行代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1 [mysqld]</span><br><span class="line">2 server-id=2</span><br><span class="line">3 relay-log-index=slave-relay-bin.index</span><br><span class="line">4 relay-log=slave-relay-bin</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1 [mysqld]</span><br><span class="line">2 server-id&#x3D;2</span><br><span class="line">3 relay-log-index&#x3D;slave-relay-bin.index</span><br><span class="line">4 relay-log&#x3D;slave-relay-bin </span><br></pre></td></tr></table></figure>
 <p>重启 MySQL 服务</p>
 </li>
 <li><p>连接 Master</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">change master to master_host=&apos;192.168.0.104&apos;, //Master 服务器Ip</span><br><span class="line">master_port=3306,</span><br><span class="line">master_user=&apos;repl&apos;,</span><br><span class="line">master_password=&apos;mysql&apos;, </span><br><span class="line">master_log_file=&apos;master-bin.000001&apos;,//Master服务器产生的日志</span><br><span class="line">master_log_pos=0;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">change master to master_host&#x3D;&#39;192.168.0.104&#39;, &#x2F;&#x2F;Master 服务器Ip</span><br><span class="line">master_port&#x3D;3306,</span><br><span class="line">master_user&#x3D;&#39;repl&#39;,</span><br><span class="line">master_password&#x3D;&#39;mysql&#39;, </span><br><span class="line">master_log_file&#x3D;&#39;master-bin.000001&#39;,&#x2F;&#x2F;Master服务器产生的日志</span><br><span class="line">master_log_pos&#x3D;0;</span><br></pre></td></tr></table></figure></li>
 <li><p>启动 Slave</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start slave;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start slave;</span><br></pre></td></tr></table></figure></li>
 </ol>
 </li>
 <li><p>Slave 从服务器 (Ubuntu)</p>
 <ol>
 <li><p>找到 MySQL 安装文件夹修改 my.cnf 文件， vim my.cnf</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">basedir =/usr/local/mysql</span><br><span class="line">datadir =/usr/local/mysql/data</span><br><span class="line">port = 3306</span><br><span class="line">server_id = 3</span><br><span class="line">relay_log_index=slave-relay-bin.index</span><br><span class="line">relay_log=slave-relay-bin</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">basedir &#x3D;&#x2F;usr&#x2F;local&#x2F;mysql</span><br><span class="line">datadir &#x3D;&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;data</span><br><span class="line">port &#x3D; 3306</span><br><span class="line">server_id &#x3D; 3</span><br><span class="line">relay_log_index&#x3D;slave-relay-bin.index</span><br><span class="line">relay_log&#x3D;slave-relay-bin</span><br></pre></td></tr></table></figure></li>
 <li><p>./support-files/myql.server restart 重启MySQL服务  ,  ./bin/mysql 进入MySQL命令窗口 </p>
 </li>
 <li><p>连接 Master</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">change master to master_host=&apos;192.168.0.104&apos;, //Master 服务器Ip</span><br><span class="line">master_port=3306,</span><br><span class="line">master_user=&apos;repl&apos;,</span><br><span class="line">master_password=&apos;mysql&apos;, </span><br><span class="line">master_log_file=&apos;master-bin.000001&apos;,//Master服务器产生的日志</span><br><span class="line">master_log_pos=0;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">change master to master_host&#x3D;&#39;192.168.0.104&#39;, &#x2F;&#x2F;Master 服务器Ip</span><br><span class="line">master_port&#x3D;3306,</span><br><span class="line">master_user&#x3D;&#39;repl&#39;,</span><br><span class="line">master_password&#x3D;&#39;mysql&#39;, </span><br><span class="line">master_log_file&#x3D;&#39;master-bin.000001&#39;,&#x2F;&#x2F;Master服务器产生的日志</span><br><span class="line">master_log_pos&#x3D;0;</span><br></pre></td></tr></table></figure></li>
 <li><p>启动 Slave</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start slave;</span><br></pre></td></tr></table></figure>
-
-</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start slave;</span><br></pre></td></tr></table></figure></li>
 </ol>
 </li>
 </ol>
-<p>转自：<a href="http://www.cnblogs.com/alvin_xp/p/4162249.html" target="_blank" rel="noopener">http://www.cnblogs.com/alvin_xp/p/4162249.html</a></p>
+<p>转自：<a target="_blank" rel="noopener" href="http://www.cnblogs.com/alvin_xp/p/4162249.html">http://www.cnblogs.com/alvin_xp/p/4162249.html</a></p>
 
         
         <br />

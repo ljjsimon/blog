@@ -150,7 +150,7 @@
 <li>UNION RESULT<br>用来从UNION的匿名临时表检索结果的SELECT被标记为UNION RESULT</li>
 </ul>
 <h2 id="table-列"><a href="#table-列" class="headerlink" title="table 列"></a>table 列</h2><p>这一列显示了对应行正在访问哪个表。</p>
-<p>当在FROM子句中有子查询时，table列是<derivedn>的形式，其中N是子查询的id。这总是“向前引用”——换言之，N指向EXPLAIN输出中后面的一行。</derivedn></p>
+<p>当在FROM子句中有子查询时，table列是<derivedN>的形式，其中N是子查询的id。这总是“向前引用”——换言之，N指向EXPLAIN输出中后面的一行。</p>
 <p>当有UNION时，UNION RESULT的table列包含一个参与UNION的id列表。这总是“向后引用”，因为UNION RESULT出现在UNION中所有参与行之后。</p>
 <h2 id="type-列"><a href="#type-列" class="headerlink" title="type 列"></a>type 列</h2><p>访问类型，就是 MySQL 决定如何查找表中的行。下面一次从最差到最优：</p>
 <ul>

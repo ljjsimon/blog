@@ -153,19 +153,16 @@ elasticsearch.yml</p>
 
 <h2 id="检测是否生效"><a href="#检测是否生效" class="headerlink" title="检测是否生效"></a>检测是否生效</h2><p>这里两个服务都配置了node.master: true，所以先启动的会被选为 master，而后进来的，data 目录下如果已经有其他数据，则会加入失败。</p>
 <p>这时我们对两个服务进行操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$curl -X PUT &apos;127.0.0.1:9200/users&apos;</span><br><span class="line">$curl -X PUT &apos;127.0.0.1:9201/pages&apos;</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$curl -X PUT &#39;127.0.0.1:9200&#x2F;users&#39;</span><br><span class="line">$curl -X PUT &#39;127.0.0.1:9201&#x2F;pages&#39;</span><br></pre></td></tr></table></figure>
 <p>然后查看是否已经生效</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$curl -X GET &apos;127.0.0.1:9200/_cat/indices?v&apos;</span><br><span class="line">$curl -X GET &apos;127.0.0.1:9201/_cat/indices?v&apos;</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$curl -X GET &#39;127.0.0.1:9200&#x2F;_cat&#x2F;indices?v&#39;</span><br><span class="line">$curl -X GET &#39;127.0.0.1:9201&#x2F;_cat&#x2F;indices?v&#39;</span><br></pre></td></tr></table></figure>
 <p>两台返回的都是</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">health status index uuid                   pri rep docs.count docs.deleted store.size pri.store.size</span><br><span class="line">green  open   users 5JUXi3KKRtyMRvWvLlwaqg   5   1          0            0      1.2kb           650b</span><br><span class="line">green  open   pages FyR1lz32QYyhJeC-U3_UgQ   5   1          0            0       520b           260b</span><br></pre></td></tr></table></figure>
-
 <p>表示集群已经可以使用了</p>
-<h1 id="动态配置"><a href="#动态配置" class="headerlink" title="动态配置"></a>动态配置</h1><p>如果我们要在集群加入一台新服务，或者移除一个老服务，需要修改每个节点配置里的 discovery.zen.ping.unicast.hosts，然后重启每个节点。如果是希望临时修改配置配置，让新的配置马上生效，等到合适的时间再重启每个节点，可以参考 es 提供的<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-update-settings.html" target="_blank" rel="noopener">集群配置接口</a>。</p>
-<h1 id="集群健康"><a href="#集群健康" class="headerlink" title="集群健康"></a>集群健康</h1><p>集群健康可以通过 <a href="https://github.com/mobz/elasticsearch-head" target="_blank" rel="noopener">head 插件</a>来监控，也可以使用 es 提供的<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-state.html" target="_blank" rel="noopener">集群状态接口</a>。</p>
+<h1 id="动态配置"><a href="#动态配置" class="headerlink" title="动态配置"></a>动态配置</h1><p>如果我们要在集群加入一台新服务，或者移除一个老服务，需要修改每个节点配置里的 discovery.zen.ping.unicast.hosts，然后重启每个节点。如果是希望临时修改配置配置，让新的配置马上生效，等到合适的时间再重启每个节点，可以参考 es 提供的<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-update-settings.html">集群配置接口</a>。</p>
+<h1 id="集群健康"><a href="#集群健康" class="headerlink" title="集群健康"></a>集群健康</h1><p>集群健康可以通过 <a target="_blank" rel="noopener" href="https://github.com/mobz/elasticsearch-head">head 插件</a>来监控，也可以使用 es 提供的<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-state.html">集群状态接口</a>。</p>
 <hr>
-<p>参考资料：<br>Elasticsearch5.2.1集群搭建，动态加入节点，并添加监控诊断插件 <a href="https://blog.csdn.net/gamer_gyt/article/details/59077189" target="_blank" rel="noopener">https://blog.csdn.net/gamer_gyt/article/details/59077189</a><br>集群配置接口 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-update-settings.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-update-settings.html</a></p>
+<p>参考资料：<br>Elasticsearch5.2.1集群搭建，动态加入节点，并添加监控诊断插件 <a target="_blank" rel="noopener" href="https://blog.csdn.net/gamer_gyt/article/details/59077189">https://blog.csdn.net/gamer_gyt/article/details/59077189</a><br>集群配置接口 <a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-update-settings.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-update-settings.html</a></p>
 
         
         <br />

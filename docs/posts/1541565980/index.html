@@ -143,14 +143,14 @@
     </div>
     <div class="post-content no-indent">
         <form name="chmod">
-<table border="0" align="center" cellpadding="4" cellspacing="0" class="datatable" style="font:normal 12px Verdana" ;>
+<table border="0" align="center" cellpadding="4" cellspacing="0" class="datatable" style="font:normal 12px Verdana" ;="">
     <tbody><tr align="LEFT" valign="MIDDLE"> 
         <td class="adHeadline">Permissions:&nbsp; </td>
         <td>
         <input type="text" name="t_total" value="751" size="4" onkeyup="octalchange()">
         </td>
         <td>&nbsp; 
-        <input type="text" name="sym_total" value size="12" readonly="1" style="border: 0px none; font-family: &quot;Courier New&quot;, Courier, mono;">
+        <input type="text" name="sym_total" value="" size="12" readonly="1" style="border: 0px none; font-family: &quot;Courier New&quot;, Courier, mono;">
         </td>
     </tr>
     </tbody>
@@ -164,7 +164,7 @@
         <td width="55" align="center" style="color:white"><b>other </b></td>
     </tr>
     <tr bgcolor="#dddddd"> 
-        <td width="60" align="left" nowrap bgcolor="#FFFFFF">read</td>
+        <td width="60" align="left" nowrap="" bgcolor="#FFFFFF">read</td>
         <td width="55" align="center" bgcolor="#EEEEEE"> 
         <input type="checkbox" name="owner4" value="4" onclick="calc_chmod()">
         </td>
@@ -176,7 +176,7 @@
         </td>
     </tr>
     <tr bgcolor="#dddddd"> 
-        <td width="60" align="left" nowrap bgcolor="#FFFFFF">write</td>
+        <td width="60" align="left" nowrap="" bgcolor="#FFFFFF">write</td>
         <td width="55" align="center" bgcolor="#EEEEEE"> 
         <input type="checkbox" name="owner2" value="2" onclick="calc_chmod()">
         </td>
@@ -188,7 +188,7 @@
         </td>
     </tr>
     <tr bgcolor="#dddddd"> 
-        <td width="60" align="left" nowrap bgcolor="#FFFFFF">execute</td>
+        <td width="60" align="left" nowrap="" bgcolor="#FFFFFF">execute</td>
         <td width="55" align="center" bgcolor="#EEEEEE"> 
         <input type="checkbox" name="owner1" value="1" onclick="calc_chmod()">
         </td>
@@ -241,11 +241,11 @@ function calc_chmod(nototals)
         var symbolic = "sym_" + user;
         var number = 0;
         var sym_string = "";
-
+    
         if (document.chmod[field4].checked == true) { number += 4; }
         if (document.chmod[field2].checked == true) { number += 2; }
         if (document.chmod[field1].checked == true) { number += 1; }
-
+    
         if (document.chmod[field4].checked == true) {
             sym_string += "r";
         } else {
@@ -261,12 +261,12 @@ function calc_chmod(nototals)
         } else {
             sym_string += "-";
         }
-
+    
         //if (number == 0) { number = ""; }
       //document.chmod[total].value = 
         totals[i] = totals[i]+number;
         syms[i] =  syms[i]+sym_string;
-
+    
   };
     if (!nototals) document.chmod.t_total.value = totals[0] + totals[1] + totals[2];
     document.chmod.sym_total.value = "-" + syms[0] + syms[1] + syms[2];
@@ -287,7 +287,7 @@ function calc_chmod(nototals)
 <li>-：不具任何权限，数字代号为“0”</li>
 </ul>
 <hr>
-<p>转自：<a href="http://mistupid.com/internet/chmod.htm" target="_blank" rel="noopener">http://mistupid.com/internet/chmod.htm</a></p>
+<p>转自：<a target="_blank" rel="noopener" href="http://mistupid.com/internet/chmod.htm">http://mistupid.com/internet/chmod.htm</a></p>
 
         
         <br />

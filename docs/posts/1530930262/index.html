@@ -269,7 +269,7 @@
 </tr>
 </tbody></table>
 <h1 id="首部"><a href="#首部" class="headerlink" title="首部"></a>首部</h1><p>HTTP 首部字段有很多，而且可以添加自定义的字段，这里只列几个比较常见或重要的。</p>
-<p>首先要说明很多字段值可以加一个质量值 <strong>“q”</strong>，定义各个值的权重，例如这个首部：</p>
+<p>首先要说明很多字段值可以加一个质量值 **”q”**，定义各个值的权重，例如这个首部：</p>
 <blockquote>
 <p>Accept-Language: en;q=0.5, fr;q=0.0, nl;q=1.0, tr;q=0.0</p>
 </blockquote>
@@ -277,7 +277,7 @@
 <h2 id="Accept"><a href="#Accept" class="headerlink" title="Accept"></a>Accept</h2><p>客户端用 Accept 首部来通知服务器可以接受哪些媒体类型。</p>
 <ul>
 <li><strong>类型</strong>：请求首部</li>
-<li><strong>注释</strong>：可以用”*”通配符。例如”<em>/</em>“,”image/*”</li>
+<li><strong>注释</strong>：可以用”<em>“通配符。例如”</em>/<em>“,”image/</em>“</li>
 <li><strong>举例</strong>：Accept: text/<em>, image/</em></li>
 </ul>
 <h2 id="Accept-Charset"><a href="#Accept-Charset" class="headerlink" title="Accept-Charset"></a>Accept-Charset</h2><p>客户端用 Accept-Charset 通知服务器可以接受哪些字符集。</p>
@@ -333,7 +333,7 @@
 <h2 id="Location"><a href="#Location" class="headerlink" title="Location"></a>Location</h2><p>服务器可以通过 Location 首部将客户端导向某个资源地址。浏览器收到这个首部将会跳转。</p>
 <ul>
 <li><strong>类型</strong>：响应首部</li>
-<li><strong>举例</strong>：Location: <a href="http://www.ljj.pub" target="_blank" rel="noopener">http://www.ljj.pub</a></li>
+<li><strong>举例</strong>：Location: <a target="_blank" rel="noopener" href="http://www.ljj.pub/">http://www.ljj.pub</a></li>
 </ul>
 <h2 id="Set-Cookie-Set-Cookie2"><a href="#Set-Cookie-Set-Cookie2" class="headerlink" title="Set-Cookie, Set-Cookie2"></a>Set-Cookie, Set-Cookie2</h2><p>Set-Cookie 首部是 Cookie 的搭档，规定了 Cookie 的作用域和其他一些信息。Set-Cookie2 是对 Set-Cookie 的扩展。</p>
 <ul>
@@ -351,7 +351,7 @@
 <hr>
 <p>参考资料：
 《HTTP权威指南》
-http状态码：<a href="https://baike.baidu.com/item/HTTP状态码/5053660?fr=aladdin" target="_blank" rel="noopener">https://baike.baidu.com/item/HTTP状态码/5053660?fr=aladdin</a></p>
+http状态码：<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/5053660?fr=aladdin">https://baike.baidu.com/item/HTTP状态码/5053660?fr=aladdin</a></p>
 
         
         <br />
