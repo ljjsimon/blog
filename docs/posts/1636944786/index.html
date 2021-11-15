@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        composer版本规范与测试包发布 - ljj的博客
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="ljj的博客" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/avatar.jpeg" />
+        </div>
+        <div class="name">
+            <i>ljj</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#composer-%E5%8C%85%E7%89%88%E6%9C%AC%E8%A7%84%E8%8C%83"><span class="toc-text">composer 包版本规范</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E7%89%88%E5%8C%85"><span class="toc-text">测试版包</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E4%B8%AD%E8%A7%84%E5%AE%9A%E6%9C%80%E4%BD%8E%E7%A8%B3%E5%AE%9A%E6%80%A7%E7%89%88%E6%9C%AC"><span class="toc-text">项目中规定最低稳定性版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%B5%8B%E8%AF%95%E8%87%AA%E5%B7%B1%E7%9A%84%E5%88%86%E6%94%AF"><span class="toc-text">项目中测试自己的分支</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        composer版本规范与测试包发布
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2021-11-15 10:52:39</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#php" title="php">php</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="composer-包版本规范"><a href="#composer-包版本规范" class="headerlink" title="composer 包版本规范"></a>composer 包版本规范</h1><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>实例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>确切的版本号</td>
+<td>1.0.2</td>
+<td>你可以指定包的确切版本。</td>
+</tr>
+<tr>
+<td>范围</td>
+<td><code>&gt;=1.0</code> ; <code>&gt;=1.0,&lt;2.0</code> ; <code>&gt;=1.0,&lt;1.1&amp;#124;&gt;=1.2</code></td>
+<td>通过使用比较操作符可以指定有效的版本范围。有效的运算符：<code>&gt;</code>、<code>&gt;=</code>、<code>&lt;</code>、<code>&lt;=</code>、<code>!=</code>。你可以定义多个范围，用逗号隔开，这将被视为一个逻辑AND处理。一个管道符号<code>&amp;#124;</code>将作为逻辑OR处理。AND 的优先级高于 OR。</td>
+</tr>
+<tr>
+<td>通配符</td>
+<td>1.0.*</td>
+<td>你可以使用通配符*来指定一种模式。1.0.*与&gt;=1.0,&lt;1.1是等效的。</td>
+</tr>
+<tr>
+<td>赋值运算符</td>
+<td>~1.2</td>
+<td>这对于遵循语义化版本号的项目非常有用。~1.2相当于&gt;=1.2,&lt;2.0。想要了解更多，请阅读下一小节。</td>
+</tr>
+</tbody></table>
+<p>~1.2 相当于 &gt;=1.2,&lt;2.0<br>~1.2.3 相当于 &gt;=1.2.3,&lt;1.3<br>^1.2 相当于 &gt;=1.2</p>
+<h1 id="测试版包"><a href="#测试版包" class="headerlink" title="测试版包"></a>测试版包</h1><p>通过标签（tag）定义版本，可以使用的后缀有 alpha, beta, RC, p</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.0.0</span><br><span class="line">v1.0.0</span><br><span class="line">1.10.5-RC1</span><br><span class="line">v4.4.4beta2</span><br><span class="line">v2.0.0-alpha</span><br><span class="line">v2.0.4-p1</span><br></pre></td></tr></table></figure>
+<p>所有提交到 Github 的分支代码默认被当作 dev 版</p>
+<h2 id="项目中规定最低稳定性版本"><a href="#项目中规定最低稳定性版本" class="headerlink" title="项目中规定最低稳定性版本"></a>项目中规定最低稳定性版本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;minimum-stability&quot;: &quot;stable&quot;, &#x2F;&#x2F; 表示最低安装版本为稳定版</span><br></pre></td></tr></table></figure>
+
+<h2 id="项目中测试自己的分支"><a href="#项目中测试自己的分支" class="headerlink" title="项目中测试自己的分支"></a>项目中测试自己的分支</h2><p>比如依赖项目为 ljj/lib，分支为：feature-ljj
+composer.json 中 require 添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;ljj&#x2F;lib&quot;: &quot;dev-feature-ljj@dev&quot;,</span><br></pre></td></tr></table></figure>
+<p>开头的 dev- 前缀表示是一个分支（开发）版，后面的 @dev 后缀表示稳定性是 dev。这样在执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer update</span><br></pre></td></tr></table></figure>
+<p>后就可以看到已经安装了该分支的代码</p>
+<hr>
+<p>参考：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/fd65d2f30e77">https://www.jianshu.com/p/fd65d2f30e77</a><br><a target="_blank" rel="noopener" href="https://igor.io/2013/02/07/composer-stability-flags.html">https://igor.io/2013/02/07/composer-stability-flags.html</a><br><a target="_blank" rel="noopener" href="https://docs.phpcomposer.com/04-schema.html">https://docs.phpcomposer.com/04-schema.html</a></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/simonlin">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/7453415873">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/questionlin">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="http://b.ljj.pub/atom.xml">feed/atom/rss</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://kalasearch.cn">卡拉搜索</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

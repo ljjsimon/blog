@@ -6,7 +6,7 @@
   <link href="http://b.ljj.pub/atom.xml" rel="self"/>
   
   <link href="http://b.ljj.pub/"/>
-  <updated>2021-10-18T05:04:46.006Z</updated>
+  <updated>2021-11-15T03:24:21.340Z</updated>
   <id>http://b.ljj.pub/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>composer版本规范与测试包发布</title>
+    <link href="http://b.ljj.pub/posts/1636944786/"/>
+    <id>http://b.ljj.pub/posts/1636944786/</id>
+    <published>2021-11-15T02:52:39.000Z</published>
+    <updated>2021-11-15T03:24:21.340Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;composer-包版本规范&quot;&gt;&lt;a href=&quot;#composer-包版本规范&quot; class=&quot;headerlink&quot; title=&quot;composer 包版本规范&quot;&gt;&lt;/a&gt;composer</summary>
+        
+      
+    
+    
+    
+    
+    <category term="php" scheme="http://b.ljj.pub/tags/php/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
@@ -447,30 +470,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>linux程序后台常驻运行</title>
-    <link href="http://b.ljj.pub/posts/1575599174/"/>
-    <id>http://b.ljj.pub/posts/1575599174/</id>
-    <published>2019-12-06T02:25:41.000Z</published>
-    <updated>2021-10-18T05:04:46.006Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;amp&quot;&gt;&lt;a href=&quot;#amp&quot; class=&quot;headerlink&quot; title=&quot;&amp;amp;&quot;&gt;&lt;/a&gt;&amp;amp;&lt;/h1&gt;&lt;p&gt;在命令后面添加 &amp;amp;，表示在后台运行。但是如果用户退出或者掉线的话，程序也会退出。&lt;/p&gt;
-&lt;h1</summary>
-        
-      
-    
-    
-    
-    
-    <category term="常用命令" scheme="http://b.ljj.pub/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
     
   </entry>
   
