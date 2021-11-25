@@ -6,7 +6,7 @@
   <link href="http://b.ljj.pub/atom.xml" rel="self"/>
   
   <link href="http://b.ljj.pub/"/>
-  <updated>2021-11-15T03:24:21.340Z</updated>
+  <updated>2021-11-25T08:30:58.553Z</updated>
   <id>http://b.ljj.pub/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>redis内存淘汰策略</title>
+    <link href="http://b.ljj.pub/posts/1637828084/"/>
+    <id>http://b.ljj.pub/posts/1637828084/</id>
+    <published>2021-11-25T08:14:03.000Z</published>
+    <updated>2021-11-25T08:30:58.553Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;过期策略&quot;&gt;&lt;a href=&quot;#过期策略&quot; class=&quot;headerlink&quot; title=&quot;过期策略&quot;&gt;&lt;/a&gt;过期策略&lt;/h1&gt;&lt;h2 id=&quot;定期删除&quot;&gt;&lt;a href=&quot;#定期删除&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="redis" scheme="http://b.ljj.pub/tags/redis/"/>
+    
+  </entry>
   
   <entry>
     <title>composer版本规范与测试包发布</title>
@@ -444,27 +467,6 @@
         
         
     <summary type="html">&lt;p&gt;门头，钥匙，蝙蝠，虾姑，落班，坐月子，矮椅，闪雷，腋下，盐水，牡蛎，水姑娘，老娘客，捡拾纸，本扫堂，畚斗，除扫，水桶，脸盆，地拖，厨房间，屋灶间，阁楼，瓦片屋顶，淀粉，糖霜，叉子，筷子，物品，骂脏话，长瓢，他拉方，骷髅排，佛殿，并不是，梨，好过，突然，花路，起里丫，酒家，锈</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>希腊穿衣法</title>
-    <link href="http://b.ljj.pub/posts/1575601676/"/>
-    <id>http://b.ljj.pub/posts/1575601676/</id>
-    <published>2019-12-06T03:05:08.000Z</published>
-    <updated>2021-10-18T05:04:46.010Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://wx4.sinaimg.cn/large/726f09bbly1frz3kqsmtvg20sg0dm0v5.gif&quot;</summary>
         
       
     
