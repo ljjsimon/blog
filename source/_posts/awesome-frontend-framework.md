@@ -16,6 +16,7 @@ id: 1608437030
 [iview-admin](https://github.com/iview/iview-admin) - 基于 iview 的后台框架，自带 iframe  
 [layui](https://github.com/sentsin/layui/) - 不基于任何js框架，可购买 iframe 后台，聊天界面  
 [naive-ui](https://github.com/TuSimple/naive-ui) - 基于vue3，自带深色模式  
+[vue-vben-admin](https://github.com/vbenjs/vue-vben-admin) - 后台模版
 
 # mobile
 [vant](https://github.com/youzan/vant) - 有赞的框架，适合电商场景（VUE）  
