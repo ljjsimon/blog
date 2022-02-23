@@ -6,7 +6,7 @@
   <link href="http://b.ljj.pub/atom.xml" rel="self"/>
   
   <link href="http://b.ljj.pub/"/>
-  <updated>2021-11-25T08:30:58.553Z</updated>
+  <updated>2022-02-23T04:12:56.686Z</updated>
   <id>http://b.ljj.pub/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>FFmpeg备忘录</title>
+    <link href="http://b.ljj.pub/posts/1645589539/"/>
+    <id>http://b.ljj.pub/posts/1645589539/</id>
+    <published>2022-02-23T04:11:48.000Z</published>
+    <updated>2022-02-23T04:12:56.686Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;FFmpeg备忘单&quot;&gt;&lt;a href=&quot;#FFmpeg备忘单&quot; class=&quot;headerlink&quot; title=&quot;FFmpeg备忘单&quot;&gt;&lt;/a&gt;FFmpeg备忘单&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ffmpeg" scheme="http://b.ljj.pub/tags/ffmpeg/"/>
+    
+  </entry>
   
   <entry>
     <title>redis内存淘汰策略</title>
@@ -451,27 +475,6 @@
     
     
     <category term="最佳实践" scheme="http://b.ljj.pub/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>温州话普通话不对应的词</title>
-    <link href="http://b.ljj.pub/posts/1575601794/"/>
-    <id>http://b.ljj.pub/posts/1575601794/</id>
-    <published>2019-12-06T03:09:37.000Z</published>
-    <updated>2021-10-18T05:04:46.011Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;门头，钥匙，蝙蝠，虾姑，落班，坐月子，矮椅，闪雷，腋下，盐水，牡蛎，水姑娘，老娘客，捡拾纸，本扫堂，畚斗，除扫，水桶，脸盆，地拖，厨房间，屋灶间，阁楼，瓦片屋顶，淀粉，糖霜，叉子，筷子，物品，骂脏话，长瓢，他拉方，骷髅排，佛殿，并不是，梨，好过，突然，花路，起里丫，酒家，锈</summary>
-        
-      
-    
-    
-    
     
   </entry>
   
