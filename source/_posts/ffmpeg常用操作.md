@@ -1,7 +1,7 @@
 ---
 title: ffmpeg常用操作
 date: 2020-06-16 18:13:28
-tags:
+tags: ffmpeg
 id: 1592302487
 ---
 ```sh
