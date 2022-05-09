@@ -6,7 +6,7 @@
   <link href="http://b.ljj.pub/atom.xml" rel="self"/>
   
   <link href="http://b.ljj.pub/"/>
-  <updated>2022-05-04T02:12:14.453Z</updated>
+  <updated>2022-05-09T13:11:49.419Z</updated>
   <id>http://b.ljj.pub/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>推荐系统常用评价指标</title>
+    <link href="http://b.ljj.pub/posts/1652099898/"/>
+    <id>http://b.ljj.pub/posts/1652099898/</id>
+    <published>2022-05-09T12:37:43.000Z</published>
+    <updated>2022-05-09T13:11:49.419Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;MAP-mean-average-precision&quot;&gt;&lt;a href=&quot;#MAP-mean-average-precision&quot; class=&quot;headerlink&quot; title=&quot;MAP(mean average</summary>
+        
+      
+    
+    
+    
+    
+    <category term="机器学习" scheme="http://b.ljj.pub/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>b站API</title>
@@ -391,7 +414,7 @@
     <link href="http://b.ljj.pub/posts/1592302487/"/>
     <id>http://b.ljj.pub/posts/1592302487/</id>
     <published>2020-06-16T10:13:28.000Z</published>
-    <updated>2022-02-23T05:00:22.464Z</updated>
+    <updated>2022-05-07T15:23:06.436Z</updated>
     
     
       
@@ -447,29 +470,6 @@
     <summary type="html">&lt;p&gt;uri&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;js&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td</summary>
-        
-      
-    
-    
-    
-    
-    <category term="最佳实践" scheme="http://b.ljj.pub/tags/%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>手机连接电脑用chrome调试网页</title>
-    <link href="http://b.ljj.pub/posts/1576983574/"/>
-    <id>http://b.ljj.pub/posts/1576983574/</id>
-    <published>2019-12-22T02:58:56.000Z</published>
-    <updated>2021-10-18T05:04:46.010Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;安卓&quot;&gt;&lt;a href=&quot;#安卓&quot; class=&quot;headerlink&quot; title=&quot;安卓&quot;&gt;&lt;/a&gt;安卓&lt;/h1&gt;&lt;h2 id=&quot;安卓打开开发者模式&quot;&gt;&lt;a href=&quot;#安卓打开开发者模式&quot; class=&quot;headerlink&quot;</summary>
         
       
     

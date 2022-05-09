@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        推荐系统常用评价指标 - ljj的博客
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="ljj的博客" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/avatar.jpeg" />
+        </div>
+        <div class="name">
+            <i>ljj</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MAP-mean-average-precision"><span class="toc-text">MAP(mean average precision)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NDCG-Normalized-Discounted-Cumulative-Gain-%E5%BD%92%E4%B8%80%E5%8C%96%E6%8A%98%E6%8D%9F%E7%B4%AF%E8%AE%A1%E5%A2%9E%E7%9B%8A"><span class="toc-text">NDCG(Normalized Discounted Cumulative Gain,归一化折损累计增益)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Precision-K%EF%BC%88%E7%B2%BE%E7%A1%AE%E7%8E%87%EF%BC%8C%E5%8F%88%E5%8F%AB%E6%9F%A5%E5%87%86%E7%8E%87%EF%BC%89"><span class="toc-text">Precision@K（精确率，又叫查准率）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Recall-K%EF%BC%88%E5%8F%AC%E5%9B%9E%E7%8E%87%EF%BC%8C%E5%8F%88%E5%8F%AB%E6%9F%A5%E5%85%A8%E7%8E%87%EF%BC%89"><span class="toc-text">Recall@K（召回率，又叫查全率）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RMSE-root-mean-square-error-%E5%9D%87%E6%96%B9%E6%A0%B9%E8%AF%AF%E5%B7%AE"><span class="toc-text">RMSE(root mean square error, 均方根误差)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MAE-Mean-Average-Error-%E5%B9%B3%E5%9D%87%E7%BB%9D%E5%AF%B9%E8%AF%AF%E5%B7%AE"><span class="toc-text">MAE(Mean Average Error, 平均绝对误差)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#R2-R-Squared%EF%BC%8C%E5%86%B3%E5%AE%9A%E7%B3%BB%E6%95%B0"><span class="toc-text">R2(R Squared，决定系数)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Exp-var"><span class="toc-text">Exp var</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Logloss"><span class="toc-text">Logloss</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        推荐系统常用评价指标
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2022-05-09 20:37:43</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#机器学习" title="机器学习">机器学习</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="MAP-mean-average-precision"><a href="#MAP-mean-average-precision" class="headerlink" title="MAP(mean average precision)"></a>MAP(mean average precision)</h1><p>是常用于query模型的评估标准。AP(average precision)是一次query的评估值。MAP表示所有query的AP的均值</p>
+<h1 id="NDCG-Normalized-Discounted-Cumulative-Gain-归一化折损累计增益"><a href="#NDCG-Normalized-Discounted-Cumulative-Gain-归一化折损累计增益" class="headerlink" title="NDCG(Normalized Discounted Cumulative Gain,归一化折损累计增益)"></a>NDCG(Normalized Discounted Cumulative Gain,归一化折损累计增益)</h1><p>上面我们也介绍了MAP评价指标,但是MAP认为是二元相关性(即对一个Item要么是感兴趣要么是不感兴趣的),而NDCG允许以实数形式进行相关性打分,这种关系类似分类和回归的关系.</p>
+<p>NDCG这个名字可能比较吓人,但背后的思想却很简单.一个推荐系统返回一些item并形成一个列表,我们想要计算这个列表有多好,每一项都有一个相关的评分值,通常这些评分值是一个非负数,这就是gain(增益).此外对于这些没有用户反馈的项我们通常设置起增益为0.</p>
+<ol>
+<li>推荐结果的相关性越大,DCG越大</li>
+<li>相关性好的排在推荐列表前面的话,推荐效果越好,DCG越大.</li>
+</ol>
+<h1 id="Precision-K（精确率，又叫查准率）"><a href="#Precision-K（精确率，又叫查准率）" class="headerlink" title="Precision@K（精确率，又叫查准率）"></a>Precision@K（精确率，又叫查准率）</h1><p>精确率表示在所有为正的样本中,真正为正的样本概率</p>
+<h1 id="Recall-K（召回率，又叫查全率）"><a href="#Recall-K（召回率，又叫查全率）" class="headerlink" title="Recall@K（召回率，又叫查全率）"></a>Recall@K（召回率，又叫查全率）</h1><p>召回率表示在原样本的正样本中,最后被正确预测为正样本的概率</p>
+<p>查准率就是说检索出的信息中有多少是用户真正感兴趣的.<br>查全率就是说用户真正感兴趣的信息有多少被我们预测到了<br>首先我们明确如下几个定力:<br>TP(True Positive) : 表示样本的真实类别为正,最后预测得到的结果也为正<br>FP(False Positive): 表示样本的真实类别为负,最后预测得到的结果为正<br>TN(True Negative): 表示样本的真实类别为负,最后预测得到的结果也为负<br>FN(False Nositive): 表示样本的真实类别为正,最后预测得到的结果为负<br>可以看到TP,TN是我们预测准确的样本,而FP,FN是我们预测错误的样本.</p>
+<p>recall 和Precision是相互矛盾的.一般来说查准率高时查全率往往偏低,查全率高时查准率往往偏低.
+在很多情形下,我们根据学习期的预测结果进行排序,排在前面的我们认为是最可能是正例的样本,排在后面的被认为是最不可能是正例的.根据此顺序我们可以每次计算出recall,precision.以查准率为纵轴,查全率为 横轴就得到了”P-R”曲线,</p>
+<h1 id="RMSE-root-mean-square-error-均方根误差"><a href="#RMSE-root-mean-square-error-均方根误差" class="headerlink" title="RMSE(root mean square error, 均方根误差)"></a>RMSE(root mean square error, 均方根误差)</h1><p>MSE(mean square error, 均方误差)是预测值与真实值差的平方的期望</p>
+<p>RMSE是MSE的算数平方根。均方根误差是用来衡量观测值同真实值之间的偏差,RMSE越小越好</p>
+<h1 id="MAE-Mean-Average-Error-平均绝对误差"><a href="#MAE-Mean-Average-Error-平均绝对误差" class="headerlink" title="MAE(Mean Average Error, 平均绝对误差)"></a>MAE(Mean Average Error, 平均绝对误差)</h1><p>表示预测值和实际值之间的绝对误差的平均值</p>
+<h1 id="R2-R-Squared，决定系数"><a href="#R2-R-Squared，决定系数" class="headerlink" title="R2(R Squared，决定系数)"></a>R2(R Squared，决定系数)</h1><p>被人们称为最好的衡量线性回归法的指标。</p>
+<p>越接近1,越好,大于0.8就不错了</p>
+<p>如果我们使用同一个算法模型，解决不同的问题，由于不同的数据集的量纲不同，MSE、RMSE等指标不能体现此模型针对不同问题所表现的优劣，也就无法判断模型更适合预测哪个问题。得到的性能度量都在[0, 1]之间，可以判断此模型更适合预测哪个问题。</p>
+<h1 id="Exp-var"><a href="#Exp-var" class="headerlink" title="Exp var"></a>Exp var</h1><h1 id="Logloss"><a href="#Logloss" class="headerlink" title="Logloss"></a>Logloss</h1><p>二分类任务中常用的损失函数，在LR中，通过对似然函数取对数得到。也就是交叉熵损失函数。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/simonlin">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/7453415873">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/questionlin">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="http://b.ljj.pub/atom.xml">feed/atom/rss</a></span>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://kalasearch.cn">卡拉搜索</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
