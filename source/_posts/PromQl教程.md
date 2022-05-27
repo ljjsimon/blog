@@ -583,3 +583,6 @@ holt_winters(v range-vector, sf scalar, tf scalar)基于访问向量v，生成�
 - deg(v instant-vector)
 - pi()
 - rad(v instant-vector)
+
+----------------------------
+转自：https://iqsing.github.io/2022/03/07/promql%20%E5%85%A8%E8%A7%A3%E6%9E%90/
