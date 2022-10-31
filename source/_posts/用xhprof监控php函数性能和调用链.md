@@ -6,13 +6,33 @@ id: 1607587289
 ---
 # 安装
 ## 安装扩展
-下载安装 xhprof 扩展，在php.ini里添加extension=php_xhprof.co
+下载安装 xhprof 扩展，在php.ini里添加
+```
+;xhprof
+extension=php_xhprof.co
+xhprof.output_dir=/tmp
+```
 
 ## 安装web工具
 下载地址[https://github.com/facebook/xhprof]
-运行http://localhost/xhprof/examples/sample.php 生成测试数据
-访问http://localhost/xhprof/xhprof_html/ 查看数据列表
-点击[View Full Callgraph] 报错需要安装Graphviz
+放到 /var/www/xhprof 目录下
+
+nginx 配置
+```
+server{
+     listen 80;
+     server_name xhprof.localhost;
+     location / {
+          root /var/www/xhprof;
+          index index.html index.php;
+     }
+     location ~ \.php$ {
+          root /var/www/xhprof;
+          include snippets/fastcgi-php.conf;
+          fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+     }
+ }
+```
 
 ## 安装Graphviz
 从graphviz官网下载 [http://www.graphviz.org/Download.php]
@@ -22,6 +42,45 @@ id: 1607587289
 - 红色的矩形部分就是性能开销大，需要优化的函数，
 - 白色的矩形部分就是性能开销正常，不需要优化的函数，
 - 黄色的矩形部分相对于白色矩形稍微有一些性能开销，但是没有红色矩形那么大，也就是性能开销在白色矩形和红色矩形之间
+
+# 部署
+在代码里植入
+```php
+<?php
+
+include_once "./xhprof_lib/utils/xhprof_lib.php";
+include_once "./xhprof_lib/utils/xhprof_runs.php";
+
+
+// 开启xhprof
+xhprof_enable();
+
+// 业务代码开始
+function test($max)
+{
+    for ($idx = 0; $idx < $max; $idx++) {
+        echo '2333' . "\r\n";
+    }
+}
+
+function a()
+{
+    test(rand(1000,2000));
+}
+
+a();
+// 业务代码结束
+
+// 收集profilling数据
+$xhprof_data = xhprof_disable();
+$xhprof_runs = new XHProfRuns_Default();
+$run_id = $xhprof_runs->save_run($xhprof_data, "xhprof_foo");
+# 打印出结果报告的URL
+echo "\nhttp://xhprof.localhost/xhprof_html/index.php?run=$run_id&source=xhprof_foo\n";
+```
+运行之后在 /tmp 下生成文件 {run_id}.xhprof_foo.xhprof 文件
+
+在浏览器打开 http://xhprof.localhost/xhprof_html/index.php?run=$run_id&source=xhprof_foo 就可以看到报告
 
 # XHProf报告字段含义
 Function Name：方法名称。
