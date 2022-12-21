@@ -6,7 +6,7 @@
   <link href="http://b.ljj.pub/atom.xml" rel="self"/>
   
   <link href="http://b.ljj.pub/"/>
-  <updated>2022-11-18T03:22:43.178Z</updated>
+  <updated>2022-12-21T10:14:13.005Z</updated>
   <id>http://b.ljj.pub/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>计算坐标之间距离的最快方法</title>
+    <link href="http://b.ljj.pub/posts/1671617094/"/>
+    <id>http://b.ljj.pub/posts/1671617094/</id>
+    <published>2022-12-21T10:04:01.000Z</published>
+    <updated>2022-12-21T10:14:13.005Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;参考文末的链接，直接给出通用答案：&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    
+    <category term="算法" scheme="http://b.ljj.pub/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>anaconda基本操作</title>
@@ -449,29 +473,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>awesome datasets</title>
-    <link href="http://b.ljj.pub/posts/1595211059/"/>
-    <id>http://b.ljj.pub/posts/1595211059/</id>
-    <published>2020-07-20T02:08:38.000Z</published>
-    <updated>2021-10-18T05:04:46.005Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;列表&quot;&gt;&lt;a href=&quot;#列表&quot; class=&quot;headerlink&quot; title=&quot;列表&quot;&gt;&lt;/a&gt;列表&lt;/h1&gt;&lt;h2 id=&quot;地址&quot;&gt;&lt;a href=&quot;#地址&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="数据" scheme="http://b.ljj.pub/tags/%E6%95%B0%E6%8D%AE/"/>
     
   </entry>
   
