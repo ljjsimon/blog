@@ -25,12 +25,17 @@ git revert <commit-id>/<reflog-id>
 # 回滚到某个 commit/reflog，并删除后面的 commit/reflog
 和revert的区别：reset命令会抹去某个commit id之后的所有commit
 ```sh
+git log // 查询要回滚的 commit_id
+git reset --hard <commit-id>/<reflog-id> #会滚到指定 commit，文件会改变，线上紧急回滚时用
+git push origin HEAD --force // 强制推送到远端
+```
+git reset 参数默认是 --mixed，会回滚 commit 和 add，保留文件。平时使用默认就可以了。线上运维使用 --hard 回滚代码。
+
+```sh
 git reset <commit-id>/<reflog-id> #默认就是-mixed参数，回滚 commit 和 add，不回滚文件
 git reset HEAD^ #回滚到上一个 commit
 git reset --mixed HEAD~1 #和上一个一样，HEAD~ 后跟往回退几步
-git reset --hard <commit-id>/<reflog-id> #会滚到指定 commit，文件会改变，线上紧急回滚时用
 ```
-git reset 参数默认是 --mixed，会回滚 commit 和 add，保留文件。平时使用默认就可以了。线上运维使用 --hard 回滚代码。
 
 git reset commit-id 和 reflog-id 的区别：  
 通常我们都是在新分支上开发，然后合并(merge)到发布分支，因此在发布分支，只要使用
