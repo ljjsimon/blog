@@ -128,10 +128,6 @@ friends: [
   {
     title: 'feed/atom/rss',
     href: 'http://b.ljj.pub/atom.xml'
-  },
-  {
-    title: '卡拉搜索',
-    href: 'https://kalasearch.cn'
   }
 ]
 #Custom Setting End
