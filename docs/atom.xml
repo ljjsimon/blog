@@ -6,7 +6,7 @@
   <link href="http://b.ljj.pub/atom.xml" rel="self"/>
   
   <link href="http://b.ljj.pub/"/>
-  <updated>2022-12-21T10:14:13.005Z</updated>
+  <updated>2023-06-23T11:47:24.905Z</updated>
   <id>http://b.ljj.pub/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mongodb本地开启副本集</title>
+    <link href="http://b.ljj.pub/posts/1687520641/"/>
+    <id>http://b.ljj.pub/posts/1687520641/</id>
+    <published>2023-06-23T11:43:26.000Z</published>
+    <updated>2023-06-23T11:47:24.905Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;mongodb 使用事务需要开启集群。首先在配置 mongod.conf里加入&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>计算坐标之间距离的最快方法</title>
@@ -446,28 +468,6 @@
         
     <summary type="html">&lt;h1 id=&quot;转载前言&quot;&gt;&lt;a href=&quot;#转载前言&quot; class=&quot;headerlink&quot; title=&quot;转载前言&quot;&gt;&lt;/a&gt;转载前言&lt;/h1&gt;&lt;p&gt;这是一篇网络考古，文章写于2000年，里面提到的很多网站现在已经不能访问了。下面是原文&lt;/p&gt;
 &lt;h1</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>晋升申请怎么写</title>
-    <link href="http://b.ljj.pub/posts/1596521817/"/>
-    <id>http://b.ljj.pub/posts/1596521817/</id>
-    <published>2020-08-04T06:16:34.000Z</published>
-    <updated>2021-10-18T05:04:46.010Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;1、入职后发现业务产品的设计漏洞，随即作为&lt;font color=&quot;red&quot;&gt;Owner&lt;/font&gt;推动落地风控升级方案，节省并降低&lt;font color=&quot;red&quot;&gt;700w+&lt;/font&gt;运营费用和损耗；&lt;/p&gt;
-&lt;p&gt;2、深入一线实际运营场景，&lt;font</summary>
         
       
     
