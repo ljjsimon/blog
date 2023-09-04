@@ -6,7 +6,7 @@
   <link href="http://b.ljj.pub/atom.xml" rel="self"/>
   
   <link href="http://b.ljj.pub/"/>
-  <updated>2023-06-23T11:47:24.905Z</updated>
+  <updated>2023-09-04T10:56:19.390Z</updated>
   <id>http://b.ljj.pub/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>go面试题</title>
+    <link href="http://b.ljj.pub/posts/1693824394/"/>
+    <id>http://b.ljj.pub/posts/1693824394/</id>
+    <published>2023-09-04T10:46:00.000Z</published>
+    <updated>2023-09-04T10:56:19.390Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Golang-逃逸分析&quot;&gt;&lt;a href=&quot;#Golang-逃逸分析&quot; class=&quot;headerlink&quot; title=&quot;Golang 逃逸分析&quot;&gt;&lt;/a&gt;Golang 逃逸分析&lt;/h2&gt;&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="golang" scheme="http://b.ljj.pub/tags/golang/"/>
+    
+  </entry>
   
   <entry>
     <title>mongodb本地开启副本集</title>
@@ -451,28 +474,6 @@
     
     
     <category term="php" scheme="http://b.ljj.pub/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>中国共享软件如何进军国际市场完全指导手册</title>
-    <link href="http://b.ljj.pub/posts/1599615193/"/>
-    <id>http://b.ljj.pub/posts/1599615193/</id>
-    <published>2020-09-09T01:32:26.000Z</published>
-    <updated>2021-10-18T05:04:46.009Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;转载前言&quot;&gt;&lt;a href=&quot;#转载前言&quot; class=&quot;headerlink&quot; title=&quot;转载前言&quot;&gt;&lt;/a&gt;转载前言&lt;/h1&gt;&lt;p&gt;这是一篇网络考古，文章写于2000年，里面提到的很多网站现在已经不能访问了。下面是原文&lt;/p&gt;
-&lt;h1</summary>
-        
-      
-    
-    
-    
     
   </entry>
   
