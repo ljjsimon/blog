@@ -6,7 +6,7 @@
   <link href="http://b.ljj.pub/atom.xml" rel="self"/>
   
   <link href="http://b.ljj.pub/"/>
-  <updated>2023-09-04T10:56:19.390Z</updated>
+  <updated>2023-12-08T05:09:58.581Z</updated>
   <id>http://b.ljj.pub/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>venv创建使用</title>
+    <link href="http://b.ljj.pub/posts/1702011784/"/>
+    <id>http://b.ljj.pub/posts/1702011784/</id>
+    <published>2023-12-08T05:02:32.000Z</published>
+    <updated>2023-12-08T05:09:58.581Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;创建&quot;&gt;&lt;a href=&quot;#创建&quot; class=&quot;headerlink&quot; title=&quot;创建&quot;&gt;&lt;/a&gt;创建&lt;/h1&gt;&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
+        
+      
+    
+    
+    
+    
+    <category term="python" scheme="http://b.ljj.pub/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>go面试题</title>
@@ -451,29 +474,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>用xhprof监控php函数性能和调用链</title>
-    <link href="http://b.ljj.pub/posts/1607587289/"/>
-    <id>http://b.ljj.pub/posts/1607587289/</id>
-    <published>2020-12-10T07:59:30.000Z</published>
-    <updated>2022-10-31T05:28:12.372Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h1&gt;&lt;h2 id=&quot;安装扩展&quot;&gt;&lt;a href=&quot;#安装扩展&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="php" scheme="http://b.ljj.pub/tags/php/"/>
     
   </entry>
   
