@@ -8,7 +8,7 @@ id: 1610023607
 ---
 # 选择国内镜像
 ```sh
-$ npm i -g nrm --registry=https://registry.npm.taobao.org
+$ npm i -g nrm --registry=https://registry.npmmirror.com/
 $ nrm ls # 列出所有镜像
 $ nrm use cnpm # 使用 cnpm 镜像 
 ```
